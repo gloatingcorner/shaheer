@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shaheer.</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="favicon" href="android-chrome-192x192.png">
+    <link rel="script" href="script.js">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+
+</head>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const counters = document.querySelectorAll(".counter");
+  const counterBoxes = document.querySelectorAll(".counter-box");
+  const speed = 200; 
+
+  const animateCounters = () => {
+    counters.forEach(counter => {
+      const updateCount = () => {
+        const target = +counter.getAttribute("data-target");
+        const count = +counter.innerText;
+        const increment = Math.ceil(target / speed);
+
+        if (count < target) {
+          counter.innerText = count + increment;
+          setTimeout(updateCount, 20);
+        } else {
+          counter.innerText = target + "+";
+        }
+      };
+      updateCount();
+    });
+  };
+
+  const serviceSection = document.querySelector("#service");
+  let started = false;
+
+  window.addEventListener("scroll", () => {
+    const sectionTop = serviceSection.offsetTop - window.innerHeight + 200;
+    if (!started && window.scrollY > sectionTop) {
+      animateCounters();
+      
+      counterBoxes.forEach((box, index) => {
+        setTimeout(() => {
+          box.classList.add("show");
+        }, index * 200);
+      });
+
+      started = true;
+    }
+  });
+});
+</script>
+
+<body>
+ <header id="top">
+  <div class="logo">SHAHEER.</div>
+    <nav class="heading">
+      <ul>
+        <li><a href="#Hero">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#service">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+ </header>
+
+<section class="hero" id="Hero">
+  <div class="hero-image">
+    <img src="bold.png" alt="herotag" height="450px">
+  </div>
+
+  <div class="hero-content">
+    <h1>Be Bold,
+       Be Creative</h1>
+    <p>I don’t just design, I build experiences that make brands unforgettable.
+From striking visuals to modern digital solutions, every detail I create is meant to inspire, connect, and leave a lasting impact.</p>
+    <button class="backbutton"></button>   
+    <button class="button" onclick="location.href='#contact'">Get A Quote</button>
+  </div>
+  </section>
+
+<section id="about" class="About">
+  <div class="about-container">
+    <div class="about-left">
+      <img src="aboutme.png" alt="About Image">
+    </div>
+
+    <div class="about-right">
+      <div class="about-heading">
+        <h2>About Me</h2>
+      </div>
+      <div class="about-text">
+        <p>
+          I’m a designer and developer in progress, exploring branding, UI/UX, web development, and video editing. Always learning, always creating, I aim to bring ideas to life with clarity and purpose.
+        </p>
+        <button class="contact-btn" onclick="location.href='#contact'">Contact Me</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="Services" id="service">
+  <div class="services-wrapper">
+
+    <div class="service-card">
+      <h3>Web Design</h3>
+      <p>I create modern, user-friendly, and responsive web designs tailored to your brand.</p>
+    </div>
+
+    <div class="service-card">
+      <h3>Branding</h3>
+      <p>Strong and impactful branding solutions that connect with your audience.</p>
+    </div>
+
+    <div class="service-card">
+      <h3>UI/UX</h3>
+      <p>Designing intuitive user experiences with clean, functional, and attractive interfaces.</p>
+    </div>
+
+  </div>
+
+  <div class="counters">
+    <div class="counter-box">
+      <h3 class="counter" data-target="500">0</h3>
+      <p>Clients</p>
+    </div>
+    <div class="counter-box">
+      <h3 class="counter" data-target="120">0</h3>
+      <p>Projects</p>
+    </div>
+    <div class="counter-box">
+      <h3 class="counter" data-target="5">0</h3>
+      <p>Years Experience</p>
+    </div>
+    <div class="counter-box">
+      <h3 class="counter" data-target="50">0</h3>
+      <p>Brands</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section" id="contact">
+  <div class="Contact">
+    <div class="contact-image">
+      <img src="contact.png " alt="Contact Image">
+    </div>
+
+    <div class="contact-content">
+      <h2>Get in Touch</h2>
+      <form class="form-area" aria-label="Contact form">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="Your email" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="Your message" required></textarea>
+        </div>
+        <button type="submit" class="btn-contact">Send</button>
+      </form>
+
+      <div class="details" aria-label="Contact info and social media">
+        <div>
+          <strong>Contact</strong>
+          <a href="mailto:shaheerusman1215@gmail.com">shaheerusman1215@gmail.com</a>
+        </div>
+        <div>
+          <strong>Based in</strong>
+          <span>Islamabad<br />DC</span>
+        </div>
+        <nav class="social-icons" aria-label="Social media">
+          <a href="nosocials" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M22,12A10,10,0,1,0,12,22V14.89H9.93V12h2.07V9.8a2.9,2.9,0,0,1,3.1-3.15,12.6,12.6,0,0,1,1.88.17V9.49H15.68a.78.78,0,0,0-.84.85v1.08h2.25l-.36,2.89H14.84V22A10,10,0,0,0,22,12Z"/></svg>
+          </a>
+          <a href="noscocials" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M7.75,2h8.5A5.75,5.75,0,0,1,22,7.75v8.5A5.75,5.75,0,0,1,16.25,22h-8.5A5.75,5.75,0,0,1,2,16.25v-8.5A5.75,5.75,0,0,1,7.75,2Zm0,2A3.75,3.75,0,0,0,4,7.75v8.5A3.75,3.75,0,0,0,7.75,20h8.5A3.75,3.75,0,0,0,20,16.25v-8.5A3.75,3.75,0,0,0,16.25,4Zm4.25,3.24a4.01,4.01,0,1,1-4.01,4.01A4,4,0,0,1,13,7.25Zm0,2A2,2,0,1,0,15,11.25,2,2,0,0,0,13,9.25Zm3.45-.68a.91.91,0,1,1,.91-.91A.91.91,0,0,1,16.49,8.57Z"/></svg>
+          </a>
+          <a href="nosocials" aria-label="Twitter">
+            <svg viewBox="0 0 24 24"><path d="M22.46,6c-.77.35-1.6.58-2.46.68a4.3,4.3,0,0,0,1.89-2.37,8.6,8.6,0,0,1-2.72,1A4.28,4.28,0,0,0,16,4a4.29,4.29,0,0,0-4.28,4.29,4.05,4.05,0,0,0,.11.98A12.17,12.17,0,0,1,3,5.11,4.28,4.28,0,0,0,4.41,11a4.28,4.28,0,0,1-1.94-.53v.05a4.29,4.29,0,0,0,3.44,4.2,4.33,4.33,0,0,1-1.93.07,4.29,4.29,0,0,0,4,3A8.6,8.6,0,0,1,3,18.41a12.14,12.14,0,0,0,6.57,1.92c7.89,0,12.21-6.54,12.21-12.2,0-.19,0-.37,0-.56A8.71,8.71,0,0,0,22.46,6Z"/></svg>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="Footer">
+     Shaheer Usman - Copyrights 2025 © | All rights reserved
+</footer>
+
+
+</body>
+</html>
