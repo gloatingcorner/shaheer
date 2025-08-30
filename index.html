@@ -12,50 +12,57 @@
 
 </head>
 <script>
-document.addEventListener("DOMContentLoaded", () => {
-  const counters = document.querySelectorAll(".counter");
-  const counterBoxes = document.querySelectorAll(".counter-box");
-  const speed = 200; 
+  // Counter animation (your existing code)
+  document.addEventListener("DOMContentLoaded", () => {
+    const counters = document.querySelectorAll(".counter");
+    const counterBoxes = document.querySelectorAll(".counter-box");
+    const speed = 200; 
 
-  const animateCounters = () => {
-    counters.forEach(counter => {
-      const updateCount = () => {
-        const target = +counter.getAttribute("data-target");
-        const count = +counter.innerText;
-        const increment = Math.ceil(target / speed);
+    const animateCounters = () => {
+      counters.forEach(counter => {
+        const updateCount = () => {
+          const target = +counter.getAttribute("data-target");
+          const count = +counter.innerText;
+          const increment = Math.ceil(target / speed);
 
-        if (count < target) {
-          counter.innerText = count + increment;
-          setTimeout(updateCount, 20);
-        } else {
-          counter.innerText = target + "+";
-        }
-      };
-      updateCount();
-    });
-  };
-
-  const serviceSection = document.querySelector("#service");
-  let started = false;
-
-  window.addEventListener("scroll", () => {
-    const sectionTop = serviceSection.offsetTop - window.innerHeight + 200;
-    if (!started && window.scrollY > sectionTop) {
-      animateCounters();
-      
-      counterBoxes.forEach((box, index) => {
-        setTimeout(() => {
-          box.classList.add("show");
-        }, index * 200);
+          if (count < target) {
+            counter.innerText = count + increment;
+            setTimeout(updateCount, 20);
+          } else {
+            counter.innerText = target + "+";
+          }
+        };
+        updateCount();
       });
+    };
 
-      started = true;
-    }
+    const serviceSection = document.querySelector("#service");
+    let started = false;
+
+    window.addEventListener("scroll", () => {
+      const sectionTop = serviceSection.offsetTop - window.innerHeight + 200;
+      if (!started && window.scrollY > sectionTop) {
+        animateCounters();
+        
+        counterBoxes.forEach((box, index) => {
+          setTimeout(() => {
+            box.classList.add("show");
+          }, index * 200);
+        });
+
+        started = true;
+      }
+    });
   });
-});
+
+  const menuToggle = document.getElementById("menu-toggle");
+  const menu = document.getElementById("menu");
+
+  menuToggle.addEventListener("click", () => {
+    menu.classList.toggle("active");
+  });
 </script>
 
-<body>
 <header id="top">
   <div class="logo">SHAHEER.</div>
   <nav class="heading">
@@ -65,10 +72,8 @@ document.addEventListener("DOMContentLoaded", () => {
       <li><a href="#service">Services</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <div class="menu-toggle" id="menu-toggle">
-      ☰
-    </div>
   </nav>
+  <div class="menu-toggle" id="menu-toggle">☰</div>
 </header>
 
 <section class="hero" id="Hero">
